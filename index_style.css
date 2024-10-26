@@ -1,0 +1,246 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: "Geist Sans";
+  src: url("https://assets.codepen.io/605876/GeistVF.ttf") format("truetype");
+}
+
+:root {
+  --bg: hsl(0, 100%, 17%);
+  --color: hsl(0 0% 100% / 0.1);
+  --underline-width: 1lh;
+  --underline-block-width: 330vmax;
+  --underline-color: hsl(0 0% 50% / 0.15);
+  --underline-color-hover: hsl(180 100% 50% / 1);
+  --underline-transition: 5s;
+  --finish-fill: hsl(0 0% 100%);
+  --accent: hsl(0 0% 100%);
+  --fill: hsl(0, 0%, 100%);
+}
+  
+body {
+  color: var(--color);
+  font-family: "Geist Sans", sans-serif;
+  font-weight: bold;
+  accent-color: red;
+  overflow-x: hidden;
+  font-weight: 120;
+}
+
+.index_bd {
+  background: linear-gradient(#76030f, #65071e, #550b2c, #440f3b,#33134a, #76030f);
+  height: 1000vh;
+}
+
+.response {
+  width: 100%; 
+  margin-top: 5px;
+  flex-wrap: wrap; 
+  flex-direction: row-reverse;
+  align-items: baseline;
+  justify-content: space-evenly;
+
+  flex-grow: 0;
+  margin: 5px 0; 
+  width: 73%;
+  font-size: 30px; 
+  padding: 10px;
+  padding-left: 20%;
+  padding-right: 20%;
+  list-style-type: none;
+  text-align: center;
+  position: relative;
+  display: flex;
+  align-content: stretch;
+
+  animation: fade-in2 linear;
+  animation-timeline: view();
+  animation-range-start: cover;
+  animation-range-end: 700px;
+}
+
+@keyframes fade-in2 {
+  from {
+    scale: .8; opacity: 0;
+  }
+
+  to {
+    scale: 1; opacity: 1;
+  }
+}
+
+.response a, .home a {
+  color: hsl(0, 0%, 100%);
+  text-decoration: none;
+  padding: 5px 15px;
+  display: block;
+}
+
+.response a:hover {
+  background-color: #666;
+  border-radius: 5px;
+  color: hsl(0, 0%, 100%);
+  text-shadow: 1px -1px 1px rgba(0, 0, 0, 1);
+  transform: scale(1.3, 1.3);
+  transition: all 0.2s linear;
+}
+
+
+:root:has(#driver:checked) main {
+  outline: 1rem dashed hsl(0 80% 50% / 0.5);
+  background: hsl(0 80% 50% / 0.1);
+}
+  
+header, footer {
+  height: 100vh;
+  color: var(--finish-fill);
+  display: grid;
+  place-items: center;
+  font-size: clamp(2rem, 4vw + 1rem, 12rem);
+}
+  
+h1, h2 {
+  font-weight: 120;
+  background: linear-gradient(var(--finish-fill), var(--fill));
+  background-clip: text;
+  color: transparent;
+  /*text-transform: uppercase;*/
+}
+  
+.controls {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 100px;
+    z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: hsl(0 0% 90%);
+  color: hsl(0 0% 10%);
+}
+  
+p {
+  max-width: 70vw;
+  overflow: hidden;
+  padding: 10ch;
+  margin: 0;
+  text-align: center;
+}
+
+p > span {
+  outline-color: hsl(10 80% 50%);
+  outline-offset: 10ch;
+  font-size: clamp(3rem, 4vw + 1rem, 10rem);
+  opacity: 0;
+  color: var(--color);
+  text-decoration: none;
+  background-image:
+    /* First one is the highlight */
+    linear-gradient(90deg, transparent calc(100% - 8ch), var(--accent) calc(100%  - 8ch)),
+    linear-gradient(90deg, var(--fill), var(--fill)),
+    linear-gradient(90deg, var(--underline-color), var(--underline-color));
+  background-size:
+    var(--underline-block-width) var(--underline-width),
+    var(--underline-block-width) var(--underline-width),
+    100% var(--underline-width);
+  background-repeat: no-repeat;
+  background-position-x: 0;
+  background-position-y: 100%;
+  background-clip: text;
+  color: var(--finish-fill);*/
+}
+  
+/*  p > span {
+  background-clip: unset;
+  color: transparent;
+  background-position-x: -200vmax, -200vmax, 0;
+  animation: fill-up 4s infinite linear;
+}
+  
+@keyframes fill-up {
+  to { background-position-x: 0, 0, 0; }
+}*/
+  
+main {
+  height: 500vh;
+}
+
+article {
+  align-items: center;
+  position: sticky;
+  top: 4%;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+}
+
+div {
+  height: 460vh;
+  place-items: center;
+}
+  
+section {
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+}
+  
+  
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    div {
+      view-timeline-name: --article;
+    }
+      
+    p > span {
+      background-position-x:
+        calc(var(--underline-block-width) * -1),
+        calc(var(--underline-block-width) * -1),
+        0;
+      color: transparent;
+      animation-name: fill-up, color-in, fade-in;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+      animation-timeline: --article;
+      animation-range: entry 100% cover 50%, cover 50% exit 0%;
+    }
+  
+    @keyframes fill-up {
+      to { background-position-x: 0, 0, 0; }
+    }
+  
+    @keyframes color-in {
+      to { color: var(--finish-fill); }
+    }
+
+    @keyframes fade-in {
+      to {opacity: 1;} 
+    }
+  }
+}
+
+.response_pg {
+  height: 97vh;
+  background: #666;
+  color: white;
+}
+
+.response_txt {
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 7vh;
+}
+
+.response_mn {
+  height: 98vh;
+}
+
+img {
+  width: 50vh;
+  border-radius: 45px;
+}
